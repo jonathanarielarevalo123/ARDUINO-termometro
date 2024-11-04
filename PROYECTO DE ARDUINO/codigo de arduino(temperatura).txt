@@ -1,0 +1,60 @@
+#include <LiquidCrystal.h>
+
+// Inicializar el LCD (RS, E, D4, D5, D6, D7)
+LiquidCrystal lcd(2, 3, 9, 10, 11, 12);
+
+int pinLM35 = A0;  // LM35 conectado al pin analógico A0
+float temperaturaC;
+
+void setup() {
+  lcd.begin(16, 2); // Configurar el número de columnas y filas del LCD
+}
+
+void loop() {
+  // Mostrar el primer mensaje
+ lcd.clear(); // Limpiar la pantalla
+  lcd.setCursor(0, 0); // Posicionar el cursor en la primera fila
+  lcd.print("Bienvenidos"); // Mostrar el mensaje
+  lcd.setCursor(0, 1); // Posicionar el cursor en la segunda fila
+  lcd.print("Cientificos!"); // Mostrar el mensaje en la segunda fila
+  delay(5000); // Esperar 5 segundos
+
+
+  // Mostrar el segundo mensaje
+  lcd.clear(); // Limpiar la pantalla
+  lcd.setCursor(0, 0); // Posicionar el cursor en la primera fila
+  lcd.print("A la feria"); // Mostrar el mensaje
+  lcd.setCursor(0, 1); // Posicionar el cursor en la segunda fila
+  lcd.print("de logros!"); // Mostrar el mensaje en la segunda fila
+  delay(5000); // Esperar 5 segundos
+
+  // Mostrar el tercer mensaje
+  lcd.clear(); // Limpiar la pantalla
+  lcd.setCursor(0, 0); // Posicionar el cursor en la primera fila
+  lcd.print("Espero"); // Mostrar el mensaje
+  lcd.setCursor(0, 1); // Posicionar el cursor en la segunda fila
+  lcd.print("se diviertan :)!"); // Mostrar el mensaje
+  delay(5000); // Esperar 5 segundos
+
+  // Mostrar el cuarto mensaje
+  lcd.clear(); // Limpiar la pantalla
+  lcd.setCursor(0, 0); // Posicionar el cursor en la primera fila
+  lcd.print("La temperatura"); // Mostrar el mensaje
+  lcd.setCursor(0, 1); // Posicionar el cursor en la segunda fila
+  lcd.print("del ambiente es:"); // Mostrar el mensaje
+  delay(5000); // Esperar 5 segundos
+
+  // Leer el valor analógico del sensor LM35
+  int valorAnalogico = analogRead(pinLM35); // Leer el valor analógico del LM35
+  temperaturaC = (valorAnalogico * 110 )/ 1023; // Convertir el valor analógico a Celsius
+
+  // Mostrar la temperatura en el LCD
+  lcd.clear(); // Limpiar la pantalla antes de mostrar la temperatura
+  lcd.setCursor(0, 0); // Posicionar el cursor en la primera fila
+  lcd.print("Temperatura:"); // Mostrar "Temperatura:" en la primera fila
+  lcd.setCursor(0, 1); // Posicionar el cursor en la segunda fila
+  lcd.print(temperaturaC); // Mostrar la temperatura en la segunda fila
+  lcd.print((char)223); // Mostrar el símbolo de grado
+  lcd.print("C"); // Mostrar la unidad de Celsius
+  delay(5000); // Mostrar la temperatura durante 5 segundos
+}
